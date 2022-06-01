@@ -1,0 +1,203 @@
+/*  дополнительный код CSS пишем тут */
+/**
+ * From Mobile (320px) to Tablet Portrait (768px)
+
+ * 1 block -> all elements width: 50%
+ * 2 block -> all elements width: 50%
+ * 3 block -> 1 element in a row, full width 100% for all
+ * 4 block -> 1 element in a row, full width 100% for all
+ * 5 block -> all elements in 100% width
+*/
+
+/**
+* From Tablet Portrait (768px) to Tablet Landscape (960px)
+
+  * 1 block -> all elements width: 50%
+  * 2 block -> all elements width: 50%
+  * 3 block -> 1 element in a row, full width
+  * 4 block -> 1 and second: 50% and last element 100% width
+  * 5 block -> 2 elements in a row, 50% width, last one is 100% width
+*/
+
+/**
+ * From Tablet Landscape (960px) to medium desktop (1200px)
+
+ * 1 block -> 2 elements in a row: all equal width, so it will have 2 rows width: 50%
+ * 2 block -> 2 elements in a row: all equal width
+ * 3 block -> 3 elements in a row: all equal width
+ * 4 block -> 3 elements in a row: 1 -> 35%, 2 -> 30% and 3 ->35%
+ * 5 block -> 2 elements in a row, all equal width, the last one should be 100% width
+*/
+
+
+/**
+ * From medium desktop (1200px) to large desktop (1800px)
+
+ * 1 block -> 2 elements in a row: all equal width, so it will have 2 rows width: 50%
+ * 2 block -> 2 elements in a row: all equal width
+ * 3 block -> 3 elements: 1 -> 50%, 2 -> 50% and last 100%
+ * 4 block -> 3 elements in a row: 1 -> 35%, 2 -> 30% and 3 ->35%
+ * 5 block -> 3 or 2 elements in a row, all 33% width, centered in center of parent block
+*/
+
+/**
+ * From large Desktop (1800px)
+
+ * 1 block -> 4 elements in a row: all equal width
+ * 2 block -> 2 elements in a row: all equal width
+ * 3 block -> 3 elements in a row: all 25% width
+ * 4 block -> 3 elements in a row: 1 -> 25%, 2 -> 25% and 3 ->50%
+ * 5 block -> 5 elements in a row: all equal width
+*/
+
+/* Phone */
+@media screen and (max-width: 768px) {
+ .first.block, .second.block{
+   display: flex;
+   width: 50%;
+ }
+
+ .third.block, .fourth.block{
+   width: 100%;
+  display: flex;
+  flex-direction: column;
+ }
+
+ .fifth.block{
+   display: flex;
+   width: 100%;
+ }
+}
+
+/* Tablet */
+@media screen and (min-width: 768px) {
+  .first.block, .second.block{
+     display: flex;
+     width: 50%;
+  }
+
+  .third.block{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .fourth.block, .fifth.block {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .fourth.block .colored {
+    flex-basis: 50%;
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+
+  .fourth.block .colored:last-child {
+    flex-grow: 1;
+  }
+
+  .fifth.block .colored {
+    flex-basis: 50%;
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+
+  .fifth.block .colored:last-child {
+    flex-grow: 1;
+  }
+}
+
+/* Tablet land */
+@media screen and (min-width: 960px) {
+
+ .first.block, .second.block, .third.block{
+  flex-wrap: wrap;
+  width: 100%;
+ }
+
+ .first.block .colored{
+   flex-basis: 50%;
+ }
+ .second.block .colored{
+   flex-basis: 50%;
+ }
+
+ .third.block {
+   flex-direction: row;
+   width: 100%;
+   flex-wrap: nowrap;
+ }
+
+.fourth.block .colored{
+    flex-basis: 35%;
+    flex-grow: 0;
+    flex-shrink: 0;
+ }
+ .fourth.block .colored:nth-child(2) {
+   flex-basis: 30%;
+ }
+}
+
+/* Desktop */
+@media screen and (min-width: 1200px) {
+  .third.block{
+    flex-wrap: wrap;
+  }
+  .third.block .colored{
+    flex-basis: 50%;
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+  .third.block .colored:nth-child(3){
+    flex-basis: 100%;
+  }
+  .fifth.block{
+    align-items: center;
+    justify-content: center;
+  }
+  .fifth.block .colored{
+    flex-basis: 33%;
+  }
+  .fifth.block .colored:last-child {
+    flex-grow: 0;
+  }
+
+}
+
+/* Large Desktop */
+@media screen and (min-width: 1800px) {
+.first.block .colored{
+  flex-basis: 25%;
+}
+
+  .third.block,  .fourth.block{
+    flex-direction: row;
+  }
+  .third.block .colored{
+    flex-basis: 25%;
+  }
+  .third.block .colored:nth-child(3){
+    flex-basis: 25%;
+  }
+  .fourth.block .colored{
+    flex-basis: 25%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    
+ }
+ .fourth.block .colored:nth-child(2) {
+  flex-basis: 25%;
+}
+ .fourth.block .colored:nth-child(3) {
+    flex-grow: 50%;
+ }
+ .fifth.block{
+   flex-direction: row;
+   flex-wrap: nowrap;
+   justify-content: left;
+ }
+ .fifth.block .colored{
+   flex-basis: 20%;
+ }
+}
